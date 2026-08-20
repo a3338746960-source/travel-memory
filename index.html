@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>旅行回顾</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="./src/styles.css?v=gps-ok-1" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="app-title">
+        <div class="hero-photo" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">Japan Travel Memory Map</p>
+          <h1 id="app-title">日本旅记地图</h1>
+          <p class="hero-text">
+            用真实照片 GPS、每日路线和点位照片，把 7 天日本旅行整理成一张可以慢慢翻看的记忆地图。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#journal">进入旅行日记</a>
+          </div>
+        </div>
+        <div class="map-poster" aria-label="日本旅行点位示意图">
+          <div class="poster-line"></div>
+          <span class="poster-route-label">Tokyo / Kyoto / Nara / Osaka</span>
+          <span class="pin pin-tokyo" data-city="Tokyo"></span>
+          <span class="pin pin-kyoto" data-city="Kyoto"></span>
+          <span class="pin pin-osaka" data-city="Osaka"></span>
+          <span class="pin pin-nara" data-city="Nara"></span>
+          <div class="poster-caption">
+            <span id="summary-days">0 days</span>
+            <span id="summary-media">0 media</span>
+            <span id="summary-places">0 places</span>
+          </div>
+        </div>
+      </section>
+
+      <nav id="journal-nav" class="journal-nav" aria-label="日期快速跳转"></nav>
+
+      <section id="journal" class="journal" aria-labelledby="journal-title">
+        <div class="section-heading">
+          <p class="panel-label">Journal</p>
+          <h2 id="journal-title">旅行日记</h2>
+        </div>
+      </section>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="module" src="./src/app.js?v=gps-debug-1"></script>
+  </body>
+</html>

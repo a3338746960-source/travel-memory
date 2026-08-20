@@ -1,0 +1,26 @@
+{
+  "name": "japan-travel-memory-map",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "pythonRequirements": {
+    "Pillow": "^11.3",
+    "pdfplumber": "^0.11"
+  },
+  "scripts": {
+    "dev": "python3 -m http.server 5173",
+    "server": "node server.mjs",
+    "import:media": "node scripts/import-trip.mjs --trip 2025-japan",
+    "import:trip": "node scripts/import-trip.mjs",
+    "notes:apply": "node scripts/generate-index.mjs --trip 2025-japan --notes-only --reuse-media",
+    "check": "node scripts/generate-index.mjs --trip 2025-japan --check --reuse-media",
+    "upload:cos": "node scripts/upload-cos.mjs",
+    "rewrite:paths": "node scripts/rewrite-paths.mjs",
+    "cloud:check": "node scripts/check-cloud-assets.mjs",
+    "compress": "node scripts/compress-previews.mjs"
+  },
+  "dependencies": {
+    "busboy": "^1.6.0",
+    "cos-nodejs-sdk-v5": "^2.15.4"
+  }
+}

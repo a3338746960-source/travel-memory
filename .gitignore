@@ -1,0 +1,15 @@
+.DS_Store
+.pycache/
+__pycache__/
+*.pyc
+node_modules/
+.env
+public/raw/
+imports/
+geocoding-cache.json
+data/import-jobs.json
+.claude/
+trips/
+public/data/
+public/assets/
+data/manual-notes/

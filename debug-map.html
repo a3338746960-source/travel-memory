@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; font-family: sans-serif; }
+        #map { height: 600px; width: 100%; border: 2px solid red; }
+        .info { padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h2>Leaflet Debug Test</h2>
+        <p>Expected: Map with visible tiles centered on Japan (, )</p>13835
+    </div>
+    <div id="map"></div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        console.log("Leaflet version:", L.version);
+        
+        var map = L.map('map');
+        console.log("Map created:", map);
+        
+        // Method 1: Direct initialization
+        map.setView([35.1051, 137.8194], 7);
+        
+        var tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap'
+        });
+        tileLayer.addTo(map);
+        console.log("Tile layer added");
+        
+        map.invalidateSize();
+        console.log("invalidateSize called");
+        
+#        // 
+
+        setTimeout(() => {
+            console.log("Map state after 1s:");
+            console.log("  - Center:", map.getCenter());
+            console.log("  - Zoom:", map.getZoom());
+            console.log("  - Bounds:", map.getBounds());
+            console.log("  - Size:", map.getSize());
+        }, 1000);
+    </script>
+</body>
+</html>
