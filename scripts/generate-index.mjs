@@ -84,7 +84,7 @@ const cityRegions = tripConfig?.cityRegions ?? [];
 const checkSampleRatio = 0.1;
 const TARGET_PLACES_PER_DAY = 15;
 const GEOCODE_DELAY_MS = 1100;
-const GEOCODE_USER_AGENT = 'travel-memory-map/0.1 contact:local-codex-project';
+const GEOCODE_USER_AGENT = 'travel-memory/0.1 (https://github.com/a3338746960-source/travel-memory)';
 
 const imageExts = new Set(['.jpg', '.jpeg', '.png', '.heic', '.heif']);
 const videoExts = new Set(['.mov', '.mp4', '.m4v']);

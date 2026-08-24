@@ -106,8 +106,8 @@ async function findJob(jobId) {
 
 function buildTripConfig(job) {
   const { tripId, title, subtitle, dateRange, timezoneOffsetHours, defaultMapCenter, defaultPlaceName, cover, jobId } = job;
-  // Derive assetBaseUrl from existing japan config pattern
-  const assetBaseUrl = `https://travel-memory-assets-1437597724.cos.ap-beijing.myqcloud.com/trips/${tripId}/`;
+  // 默认使用本地生成目录，纯本地预览无需 COS；上传到云端后再改为 COS 地址
+  const assetBaseUrl = `./trips/${tripId}/generated/`;
   return {
     id: tripId,
     title,

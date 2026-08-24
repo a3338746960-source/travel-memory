@@ -8,6 +8,7 @@
 
 - [功能特性](#功能特性)
 - [快速开始](#快速开始)
+- [纯本地模式（无需 COS）](#纯本地模式无需-cos)
 - [目录结构](#目录结构)
 - [添加一次旅行](#添加一次旅行)
 - [订单事件](#订单事件)
@@ -27,7 +28,6 @@
 
 ```bash
 npm install
-cp .env.example .env   # 填入腾讯云 COS 凭据（见「环境配置」）
 npm run dev            # 启动本地开发服务器
 ```
 
@@ -36,7 +36,28 @@ npm run dev            # 启动本地开发服务器
 - 首页显示旅行列表
 - 点击卡片进入 `?trip=<trip-id>` 查看回顾
 
-> 注意：本仓库不含旅行数据。本地放置 `trips/<trip-id>/` 数据后即可正常浏览。
+> 注意：本仓库不含旅行数据。本地放置 `trips/<trip-id>/` 数据后即可正常浏览；`.env` 仅在需要上传腾讯 COS 时配置（见「环境配置」）。
+
+## 纯本地模式（无需 COS）
+
+不配置腾讯云也能完整使用：导入素材、生成数据、本地预览全部在本地完成。
+
+- 默认 `assetBaseUrl` 指向本地生成目录：`./trips/<trip-id>/generated/`
+- 导入时**不带** `--upload`，素材路径保持本地相对路径，无需 `.env`
+- 前端直接通过本地服务器访问 `trips/` 下的预览图和数据
+
+```bash
+npm install
+npm run dev
+npm run import:trip -- --trip <trip-id>
+# 打开 http://localhost:5173/?trip=<trip-id>
+```
+
+只有需要把资源托管到腾讯 COS（例如部署到公网）时才需要云端配置：
+
+1. 复制 `.env.example` 为 `.env` 并填写 COS 凭据
+2. 把 `trip-config.json` 的 `assetBaseUrl` 改为云端地址，如 `https://<bucket>.cos.<region>.myqcloud.com/trips/<trip-id>/`
+3. 导入时加 `--upload` 上传资源；如需把 `trip-data.json` 中的路径改写为云端相对路径，执行 `npm run rewrite:paths`
 
 ## 目录结构
 
@@ -128,7 +149,9 @@ npm run import:trip -- --trip <trip-id>
 npm run import:trip -- --trip <trip-id> --reuse-media
 ```
 
-### 3. 上传云端资源
+### 3. 上传云端资源（可选）
+
+纯本地预览可跳过此步；需要把资源托管到腾讯 COS 时执行：
 
 ```bash
 npm run import:trip -- --trip <trip-id> --upload
@@ -205,7 +228,7 @@ npm run import:trip -- --trip <trip-id> --upload --cleanup-raw
 
 ## 环境配置
 
-复制 `.env.example` 为 `.env`，填入腾讯云 COS 凭据：
+仅在上传资源到腾讯 COS 时需要；纯本地预览可以跳过。复制 `.env.example` 为 `.env` 并填写：
 
 ```
 COS_SECRET_ID=你的SecretId
